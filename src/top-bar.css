@@ -1,0 +1,30 @@
+/* One quiet glass surface. Extra actions live in the same menu on every screen. */
+.site-header.clean-header,.has-presentation .site-header.clean-header{position:fixed;top:20px;left:50%;transform:translateX(-50%);width:calc(100% - 64px);max-width:1020px;background:rgba(255,255,255,.72);border:1px solid rgba(255,255,255,.85);border-radius:999px;box-shadow:0 4px 24px #254b7a08,inset 0 0 0 1px #b8cce41a;backdrop-filter:blur(24px) saturate(1.2);z-index:40;transition:background .3s,box-shadow .3s}
+.site-header.clean-header.is-scrolled,.has-presentation .site-header.clean-header.is-scrolled{top:20px;border-radius:999px;background:rgba(255,255,255,.88);box-shadow:0 5px 24px #254b7a0c}
+.site-header.clean-header .nav-wrap,.has-presentation .site-header.clean-header .nav-wrap{display:grid;grid-template-columns:1fr auto 1fr;gap:28px;height:68px;padding:0 20px;max-width:none;width:100%;margin:0;align-items:center}
+.clean-header .brand{width:159px;min-width:0;display:block;justify-self:start}
+.clean-header .brand svg{display:block;width:100%;height:auto;aspect-ratio:1645/330}
+.clean-header #top-navigation-root{min-width:0;display:flex;align-items:center}
+.clean-header .opencraft-navigation{font-family:var(--font);padding:4px;gap:0}
+.clean-header .nimbus-glass{background:transparent;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none}
+.clean-header .nimbus-item{height:40px;font-size:13px;font-weight:400;padding:0 19px;color:#6c7a91;white-space:nowrap}
+.clean-header .nimbus-item[aria-current=location]{color:#204cbb;font-weight:500}
+.clean-header .nimbus-drop{top:4px;bottom:4px;background:linear-gradient(150deg,#ffffffc9,#dbefff91);box-shadow:inset 0 1px 1px #fff,inset 0 0 0 1px #ffffffc9,0 2px 8px #4376b20a}
+.clean-header .nav-actions{display:flex;gap:3px;margin:0;justify-self:end;align-items:center}
+.clean-header .nav-actions .icon-button{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;color:#263650;background:none;border:0;border-radius:50%;padding:0}
+.clean-header .nav-actions .icon-button:hover,.clean-header .nav-actions .icon-button[aria-expanded=true]{background:#dcecff80;color:#204cbb}
+.clean-header .nav-actions .icon{height:19px;width:19px;stroke-width:1.65}
+.clean-header .count-badge{min-width:15px;height:15px;top:0;right:0;font-size:9px;line-height:15px;background:#2457ff;color:white;border:2px solid #f4faff}
+.site-header.clean-header .mobile-menu{position:absolute;display:grid;right:9px;top:calc(100% + 12px);left:auto;width:240px;margin:0;padding:10px;border:1px solid #e4eaf3;border-radius:20px;background:#fff;backdrop-filter:blur(24px);box-shadow:0 12px 40px #19395c12;gap:2px;max-height:calc(100dvh - 110px);overflow-y:auto}
+.site-header.clean-header .mobile-menu[hidden]{display:none}
+.site-header.clean-header .mobile-menu>a,.site-header.clean-header .mobile-menu>button,.clean-header .header-section-links>a{display:flex;align-items:center;justify-content:flex-start;gap:12px;width:100%;min-height:45px;padding:10px 13px;border-radius:11px;font-size:13px;font-weight:400;color:#35445b;line-height:1.5;white-space:nowrap;text-align:left}
+.site-header.clean-header .mobile-menu>a:hover,.site-header.clean-header .mobile-menu>button:hover,.clean-header .header-section-links>a:hover{background:#eff5fd;color:#2457ff}
+.site-header.clean-header .mobile-menu .icon{width:18px;height:18px;stroke-width:1.6}
+.clean-header .header-section-links{display:none}
+.clean-header :is(a,button):focus-visible{outline:2px solid #2457ff;outline-offset:3px}
+@media(max-width:800px){.site-header.clean-header,.has-presentation .site-header.clean-header,.site-header.clean-header.is-scrolled,.has-presentation .site-header.clean-header.is-scrolled{width:calc(100% - 32px);top:14px}.site-header.clean-header .nav-wrap,.has-presentation .site-header.clean-header .nav-wrap{gap:12px;padding:0 15px}.clean-header .brand{width:137px}.clean-header .nimbus-item{padding:0 12px;font-size:12px}}
+@media(max-width:670px){.site-header.clean-header .nav-wrap,.has-presentation .site-header.clean-header .nav-wrap{height:61px;grid-template-columns:1fr auto;padding:0 12px 0 17px;gap:10px}.clean-header #top-navigation-root{display:none}.clean-header .brand{width:143px}.clean-header .header-section-links{display:grid;gap:2px;border-bottom:1px solid #e8edf4;padding-bottom:8px;margin-bottom:6px}.clean-header .nav-actions{gap:1px}.clean-header .nav-actions .icon-button{height:38px;width:38px}.site-header.clean-header .mobile-menu{right:0;width:min(280px,calc(100vw - 32px))}}
+@media(max-width:360px){.clean-header .brand{width:125px}.clean-header .nav-actions .icon-button{width:34px}}
+@media(prefers-reduced-motion:reduce){.site-header.clean-header{transition:none}.clean-header .nimbus-drop{will-change:auto}}
+
+.has-presentation .site-header.clean-header:has(.mobile-menu:not([hidden])){border-radius:999px;background:rgba(255,255,255,.9)}

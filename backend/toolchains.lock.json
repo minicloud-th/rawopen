@@ -1,0 +1,24 @@
+{
+  "go": {
+    "version": "go1.27.4",
+    "url": "https://go.dev/dl/go1.27.4.linux-amd64.tar.gz",
+    "sha256": "7226736c2339719cda28fbf3a54d71aa63bcefe376e98cef00034268dab24840"
+  },
+  "rust": {
+    "version": "1.100.0",
+    "components": {
+      "rustc-x86_64-unknown-linux-gnu": {
+        "url": "https://static.rust-lang.org/dist/2026-11-12/rustc-1.100.0-x86_64-unknown-linux-gnu.tar.xz",
+        "sha256": "f1d0b1dec81dab6f523cd098507763487b0d4bd7fd2c87582f154128719be03b"
+      },
+      "rust-std-x86_64-unknown-linux-gnu": {
+        "url": "https://static.rust-lang.org/dist/2026-11-12/rust-std-1.100.0-x86_64-unknown-linux-gnu.tar.xz",
+        "sha256": "4591b6486594ded52ecd6135db95bf9355bbd3ca7a380888b141528bbcf9a5d4"
+      },
+      "rust-std-wasm32-unknown-unknown": {
+        "url": "https://static.rust-lang.org/dist/2026-11-12/rust-std-1.100.0-wasm32-unknown-unknown.tar.xz",
+        "sha256": "19b7954d650fc0d22767eceb76b8e03d07ce0d6a9f4234f33c32a17ee8d6d7b9"
+      }
+    }
+  }
+}

@@ -1,0 +1,8 @@
+/* Soft focus resolves into the existing layout, without moving its space. */
+[data-scroll-reveal]{--reveal-blur:9px;--reveal-distance:20px}
+[data-reveal-kind=image]{--reveal-blur:13px;--reveal-distance:26px}
+[data-scroll-reveal=pending]{opacity:0;filter:blur(var(--reveal-blur));translate:0 var(--reveal-distance);transition:none}
+[data-scroll-reveal=revealing]{opacity:1;filter:blur(0);translate:0 0;transition:opacity .9s cubic-bezier(.16,1,.3,1) var(--reveal-delay,0ms),filter 1.1s cubic-bezier(.22,1,.36,1) var(--reveal-delay,0ms),translate 1.1s cubic-bezier(.16,1,.3,1) var(--reveal-delay,0ms);will-change:opacity,filter,translate}
+[data-scroll-reveal=done]{opacity:1;filter:none;translate:none}
+@media(max-width:760px){[data-scroll-reveal]{--reveal-blur:7px;--reveal-distance:15px}[data-reveal-kind=image]{--reveal-blur:10px;--reveal-distance:20px}}
+@media(prefers-reduced-motion:reduce){[data-scroll-reveal]{opacity:1!important;filter:none!important;translate:none!important;transition:none!important;will-change:auto!important}}

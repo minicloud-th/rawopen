@@ -1,0 +1,277 @@
+/* OpenCraft (4).html: its surface system, capsule actions, filled fields and store shelves.
+   The existing application rail, profile disclosure and hero artwork keep their own styles. */
+:root{
+  --oc-field:#ececee;--oc-field-hover:#dedee2;--oc-raised:#f7f7f8;
+  --oc-nav:#f1f1f3;--oc-accent:#4a8dff;--oc-accent-ink:#0b1b3b;
+}
+html[data-theme=light]{
+  --oc-surface:#fff;--oc-canvas:#fff;--oc-ink:#141416;--oc-secondary:#6a6a72;
+  --oc-muted:#787881;--oc-line:rgba(0,0,0,.08);--oc-wash:#f7f7f8;
+}
+html[data-theme=dark]{
+  --oc-surface:#131314;--oc-canvas:#0e0e0f;--oc-ink:#f3f3f4;--oc-secondary:#9b9ba1;
+  --oc-muted:#9b9ba1;--oc-line:rgba(255,255,255,.08);--oc-wash:#202022;
+  --oc-field:#2b2b2d;--oc-field-hover:#38383b;--oc-raised:#202022;--oc-nav:#1a1a1c;
+  --oc-accent:#4a8dff;--oc-accent-ink:#0b1b3b;--oc-focus:#4a8dff;
+}
+html .oc-redesign{font-size:1rem;line-height:1.5}
+html .oc-redesign ::selection{background:color-mix(in srgb,var(--oc-accent) 40%,transparent)}
+html .oc-redesign .oc-button-dark,
+html .oc-redesign .oc-search-submit,
+html .oc-redesign .auth-submit,
+html .oc-redesign .welcome-next,
+html .oc-redesign .member-page-action{
+  border:0;border-radius:999px;background:var(--oc-accent);color:var(--oc-accent-ink);
+  font-size:1rem;font-weight:500;min-height:46px;padding:11px 22px;
+}
+html .oc-redesign :is(.oc-button-dark,.oc-search-submit,.auth-submit,.welcome-next,.member-page-action):hover{background:var(--oc-accent);filter:brightness(1.08)}
+html .oc-redesign :is(.oc-button-dark,.oc-search-submit,.member-page-action)>svg:not(.auth-spinner){display:none}
+html .oc-redesign .oc-public-header{min-height:80px;background:var(--oc-surface)}
+html .oc-redesign .oc-public-header>nav{font-size:.95rem}
+html .oc-redesign .oc-button-outline{background:var(--oc-field);border:0;border-radius:999px;color:var(--oc-ink)}
+html .oc-redesign .oc-public-content{max-width:1440px}
+html .oc-redesign .oc-search-composer{
+  border:1px solid var(--oc-line);border-radius:26px;background:var(--oc-raised);
+  box-shadow:none;backdrop-filter:none;
+}
+html .oc-redesign .oc-search-composer input{font-size:1rem}
+html .oc-redesign .oc-search-submit{min-height:38px;padding:8px 18px;font-size:.875rem}
+html .oc-redesign .oc-search-suggestions button{
+  border:0;background:var(--oc-field);color:var(--oc-secondary);font-size:.875rem;min-height:36px;
+}
+html .oc-redesign .oc-search-suggestions button>svg{display:none}
+html .oc-redesign .oc-topics-heading h2{font-size:1.25rem;font-weight:500}
+html .oc-redesign .oc-topics-heading>button{font-size:.875rem}
+html .oc-redesign .oc-topics-heading>button>svg{display:none}
+html .oc-redesign .oc-topic-rail{gap:16px}
+html .oc-redesign .oc-topic-card{
+  display:flex;flex-direction:column-reverse;justify-content:space-between;aspect-ratio:auto;
+  min-height:245px;border-radius:24px;background:var(--oc-raised);color:var(--oc-ink);text-align:center;
+}
+html .oc-redesign .oc-topic-card:after{display:none}
+html .oc-redesign .oc-topic-card>img{
+  position:static;width:100%;height:132px;object-fit:cover;border-radius:0;transform:none;
+}
+html .oc-redesign .oc-topic-card>span{position:static;padding:23px 14px 17px;gap:5px}
+html .oc-redesign .oc-topic-card strong{font-size:1.125rem;font-weight:500}
+html .oc-redesign .oc-topic-card small{font-size:.875rem;color:var(--oc-secondary)}
+html .oc-redesign .oc-topic-card>svg{display:none}
+html .oc-redesign .catalog-type-tabs{border-radius:999px;background:var(--oc-raised);padding:5px}
+html .oc-redesign .catalog-type-tabs button{font-size:.875rem;border-radius:999px;min-height:38px}
+html .oc-redesign .catalog-tab-background{border-radius:999px;border:0;background:var(--oc-field);box-shadow:none}
+html .oc-redesign .member-category-list button{font-size:.875rem;min-height:38px}
+html .oc-redesign .member-category-list button[aria-pressed=true]{background:var(--oc-field)}
+html .oc-redesign .market-results-heading h2{font-size:1.75rem;font-weight:500;letter-spacing:-.02em}
+html .oc-redesign .market-results-heading p{font-size:1rem;line-height:1.8}
+html .oc-redesign .member-sort select{
+  font-size:.875rem;border:0;background-color:var(--oc-field);border-radius:999px;
+  appearance:none;padding:10px 36px 10px 15px;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%23898992' stroke-width='1.7'%3E%3Cpath d='m4 6 4 4 4-4'/%3E%3C/svg%3E");
+  background-position:right 12px center;background-repeat:no-repeat;
+}
+html .oc-redesign .member-filter-status{font-size:.875rem}
+html .oc-redesign .reference-catalog-shelf{padding:24px;background:var(--oc-raised);border-radius:28px}
+html .oc-redesign :is(.member-product-grid,.member-saved-grid){gap:18px}
+html .oc-redesign .oc-product-card.reference-product{
+  display:flex;flex-direction:column;position:relative;min-height:425px;padding:24px;
+  border:0;border-radius:24px;background:var(--oc-surface);color:var(--oc-ink);box-shadow:none;
+}
+.reference-product-heading{position:relative;min-height:94px;padding-right:28px}
+.reference-product-kind{display:block;font-size:.8125rem;line-height:1.6;color:var(--oc-secondary);margin-bottom:6px}
+.reference-product-heading h3{margin:0;font-size:1.375rem;line-height:1.4;letter-spacing:-.02em;font-weight:500}
+.reference-product-heading h3>button{text-align:left;font:inherit;color:var(--oc-ink)}
+.reference-product-save{position:absolute;right:-10px;top:-9px;width:36px;height:36px;display:grid;place-items:center;border:0;border-radius:50%;color:var(--oc-secondary)}
+.reference-product-save:hover{background:var(--oc-field)}
+.reference-product-save.is-saved{color:#ef7498}.reference-product-save.is-saved svg{fill:currentColor}
+.reference-product-visual{margin:auto 0 24px;border-radius:20px;overflow:hidden;background:var(--oc-field)}
+.reference-product-visual>button{display:block;width:100%}
+.reference-product-visual img{display:block;width:100%;height:auto;aspect-ratio:1.3;object-fit:cover}
+.reference-product-footer{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:auto}
+.reference-product-footer>span{font-size:1rem;line-height:1.7;white-space:nowrap}
+.reference-product-action{display:flex;align-items:center;justify-content:center;gap:5px;min-height:39px;padding:9px 15px;border-radius:999px;background:var(--oc-accent);color:var(--oc-accent-ink);font-size:.875rem;font-weight:500;white-space:nowrap}
+.reference-product-action:hover{filter:brightness(1.1)}
+html .oc-redesign .landing-catalog-more{border:0;border-radius:999px;background:var(--oc-field);font-size:1rem;padding:12px 24px}
+html .oc-redesign .landing-catalog-more>svg{display:none}
+html .oc-redesign .member-catalog-note{font-size:.8125rem;line-height:1.9}
+html .oc-redesign .oc-join-banner{border-radius:28px;background:var(--oc-raised);padding:30px}
+html .oc-redesign .oc-seller-photo{border-radius:28px}
+html .oc-redesign :is(.oc-join-banner p,.oc-how-grid p,.oc-faq-section details>p,.oc-seller-feature p){font-size:1rem}
+html .oc-redesign .oc-how-grid>article>span{border-radius:999px;background:var(--oc-field);font-size:.875rem}
+html .oc-redesign .oc-how-grid h3{font-size:1.25rem}
+html .oc-redesign .oc-faq-section summary{font-size:1rem}
+html .oc-redesign .oc-public-footer :is(a,button){font-size:.875rem}
+html .oc-redesign .oc-public-footer h2{font-size:1rem}
+html .oc-redesign .oc-footer-brand p{font-size:1rem}
+
+/* The supplied sign-in composition: one centred column with large brand and filled fields. */
+html .oc-redesign .auth-main{display:flex;max-width:none;justify-content:center;align-items:center;padding:30px 24px 65px}
+html .oc-redesign .auth-card{max-width:460px;align-self:auto}
+.reference-auth-intro{text-align:center;margin:0 0 40px}
+.reference-auth-intro>img{display:block;width:76px;height:76px;object-fit:contain;margin:0 auto 25px}
+.reference-auth-intro>h2{font-size:clamp(2rem,4.5vw,3rem);line-height:1.25;font-weight:500;letter-spacing:-.025em}
+html .oc-redesign .auth-heading{margin:0 0 23px}
+html .oc-redesign .auth-heading>img{display:none}
+html .oc-redesign .auth-heading h1{font-size:1.25rem;font-weight:500}
+html .oc-redesign .auth-heading p{font-size:.9375rem;line-height:1.8;color:var(--oc-secondary)}
+html .oc-redesign .auth-providers{gap:10px}
+html .oc-redesign .auth-provider{border:0;background:var(--oc-field);color:var(--oc-ink);border-radius:16px;min-height:49px}
+html .oc-redesign .auth-provider:hover{background:var(--oc-field-hover)}
+html .oc-redesign .auth-form{gap:18px}
+html .oc-redesign .auth-form input:not([type=checkbox]){
+  min-height:52px;height:52px;border:1px solid transparent;border-radius:16px;
+  background:var(--oc-field);color:var(--oc-ink);font-size:1rem;padding:0 18px;
+}
+html .oc-redesign .auth-form input:focus{border-color:var(--oc-accent);box-shadow:none}
+html .oc-redesign .auth-form label{font-size:.875rem}
+html .oc-redesign .auth-password>button{top:7px;right:7px;border-radius:50%}
+html .oc-redesign .auth-submit{height:48px;min-height:48px}
+html .oc-redesign .auth-divider{font-size:.8125rem}
+html .oc-redesign .auth-switch{font-size:.875rem}
+html .oc-redesign .auth-switch a{color:var(--oc-accent)}
+html .oc-redesign .auth-back{font-size:.875rem}
+html .oc-redesign .auth-message{border-radius:18px;font-size:.875rem}
+html[data-theme=dark] .oc-redesign .auth-error{background:#39252c;border-color:#72404c;color:#ffadbc}
+html[data-theme=dark] .oc-redesign .auth-notice{background:#20352e;border-color:#36594b;color:#b0e4d0}
+html .oc-redesign .auth-form .auth-age-note,html .oc-redesign .auth-form .legal-check{font-size:.8125rem}
+
+/* Filled, rounded settings panels follow the reference without introducing its demo credits. */
+html .oc-redesign.member-shell .member-panel{border-color:var(--oc-line)}
+html .oc-redesign.member-shell .member-page-header{border:0;margin-bottom:25px;padding-bottom:0}
+html .oc-redesign.member-shell .member-page-header h1{font-size:2rem;font-weight:500}
+html .oc-redesign.member-shell .oc-settings-tabs{width:fit-content;gap:4px;background:var(--oc-nav);padding:5px;border:0;border-radius:999px;margin:0 0 25px}
+html .oc-redesign.member-shell .oc-settings-tabs>a{padding:8px 17px;font-size:.875rem;border-radius:999px}
+html .oc-redesign.member-shell .oc-settings-tabs>a[aria-current=page]{background:var(--oc-field)}
+html .oc-redesign.member-shell .oc-settings-tabs>a:after{display:none}
+html .oc-redesign.member-shell .member-account-identity{border:0;background:var(--oc-raised);padding:22px;border-radius:24px;margin-bottom:14px}
+html .oc-redesign.member-shell .member-account-photo{width:72px;height:72px;background:var(--oc-field);border:0}
+html .oc-redesign.member-shell .member-account-identity h2{font-size:1.375rem}
+html .oc-redesign.member-shell .member-account-identity p{font-size:.875rem}
+html .oc-redesign.member-shell .member-account-line{padding:20px 22px;margin-top:12px;border:0;border-radius:18px;background:var(--oc-raised)}
+html .oc-redesign.member-shell .member-account-line h2{font-size:1rem}
+html .oc-redesign.member-shell .member-account-line p{font-size:.875rem}
+html .oc-redesign.member-shell .member-account-line a{font-size:.875rem;color:var(--oc-accent)}
+html .oc-redesign.member-shell .member-account-preferences{padding:20px 22px;border:0;border-radius:18px;background:var(--oc-raised);margin-top:12px}
+html .oc-redesign.member-shell .member-account-preferences h2{font-size:1rem}
+html .oc-redesign.member-shell .member-account-preferences>p{font-size:.875rem}
+html .oc-redesign.member-shell .member-account-preferences>div>span{border:0;border-radius:999px;background:var(--oc-field);font-size:.8125rem}
+html .oc-redesign.member-shell .social-settings{padding:24px;gap:22px;border-radius:24px;background:var(--oc-raised);margin-top:20px}
+html .oc-redesign.member-shell .social-settings>label{grid-template-columns:1fr;gap:10px;border:0;padding:0;font-size:.875rem}
+html .oc-redesign.member-shell .social-settings>label>span{grid-column:1;font-size:.8125rem}
+html .oc-redesign.member-shell :is(.social-settings,.member-store-form,.member-2fa) :is(input,textarea,select){
+  border:1px solid transparent;border-radius:16px;background-color:var(--oc-field);
+  color:var(--oc-ink);font-size:1rem;min-height:50px;padding:13px 17px;
+}
+html .oc-redesign.member-shell :is(.social-settings,.member-store-form,.member-2fa) :is(input,textarea,select):focus{border-color:var(--oc-accent);box-shadow:none}
+html .oc-redesign.member-shell .social-settings-actions{padding-top:8px;justify-content:flex-end}
+html .oc-redesign.member-shell .social-cancel{border:0;border-radius:999px;background:var(--oc-field);font-size:.875rem}
+html .oc-redesign.member-shell .oc-appearance-row .theme-switch{border:0;border-radius:999px;background:var(--oc-field)}
+html .oc-redesign.member-shell .oc-appearance-row .theme-switch button{border-radius:999px;font-size:.875rem;min-height:34px}
+html .oc-redesign.member-shell .oc-appearance-row .theme-switch button[aria-pressed=true]{background:var(--oc-field-hover);box-shadow:none}
+html .oc-redesign.member-shell .social-security-step{padding:20px 22px;margin-top:12px;border:0;border-radius:18px;background:var(--oc-raised)}
+html .oc-redesign.member-shell .social-security-step h2{font-size:1rem}
+html .oc-redesign.member-shell .social-security-step p{font-size:.875rem}
+html .oc-redesign.member-shell .social-step-icon{border:0;border-radius:12px;background:var(--oc-field);width:36px;height:36px}
+html .oc-redesign.member-shell .social-security-step>button{font-size:.875rem}
+html .oc-redesign.member-shell .member-2fa{background:var(--oc-raised);border:0;border-radius:24px;padding:24px}
+html .oc-redesign.member-shell .member-2fa p{font-size:.875rem}
+html .oc-redesign.member-shell .social-work-editor{border:1px solid var(--oc-line);border-radius:18px;background:var(--oc-raised)}
+html .oc-redesign.member-shell .member-faq details{border:0;border-radius:18px;background:var(--oc-raised);padding:20px 22px;margin-top:12px}
+html .oc-redesign.member-shell .member-faq summary{font-size:1rem}
+html .oc-redesign.member-shell .member-faq p{font-size:1rem}
+html .oc-redesign.member-shell .member-page-empty>span{border:0;background:var(--oc-raised);border-radius:24px}
+html .oc-redesign.member-shell .member-page-empty>p{font-size:1rem}
+html .oc-redesign.member-shell .member-page-note{font-size:.8125rem}
+html .oc-redesign.member-shell .member-page-lead{font-size:1rem}
+html .oc-redesign.member-shell .member-cart-line{border-color:var(--oc-line);padding:24px 0}
+html .oc-redesign.member-shell .member-cart-image{background:var(--oc-field);border-radius:18px}
+html .oc-redesign.member-shell .member-cart-title{font-size:1rem}
+html .oc-redesign.member-shell .member-cart-price{font-size:1rem}
+html .oc-redesign.member-shell .member-cart-summary{border:0;border-radius:24px;background:var(--oc-raised)}
+html .oc-redesign.member-shell .member-cart-summary h2{font-size:1.25rem}
+html .oc-redesign.member-shell .member-cart-summary>p{font-size:.875rem}
+html .oc-redesign.member-shell .topup-wallet{border:0;border-radius:24px;background:var(--oc-raised)}
+html .oc-redesign.member-shell .topup-wallet h2{font-size:1.25rem}
+html .oc-redesign.member-shell .topup-wallet-status{border:0;border-radius:999px;background:var(--oc-field);font-size:.875rem}
+html .oc-redesign.member-shell .topup-form{padding:24px;border-radius:24px;background:var(--oc-raised)}
+html .oc-redesign.member-shell .topup-form legend{font-size:1rem}
+html .oc-redesign.member-shell .topup-amounts button{border:0;border-radius:16px;background:var(--oc-field)}
+html .oc-redesign.member-shell .topup-amounts button[aria-pressed=true]{background:var(--oc-accent);color:var(--oc-accent-ink)}
+html .oc-redesign.member-shell .topup-amount-input{border:1px solid transparent;border-radius:18px;background:var(--oc-field)}
+html .oc-redesign.member-shell .topup-amount-input:focus-within{border-color:var(--oc-accent)}
+html .oc-redesign.member-shell .topup-methods>label{border:1px solid transparent;border-radius:18px;background:var(--oc-field)}
+html .oc-redesign.member-shell .topup-methods>label.is-selected{border-color:var(--oc-accent);background:var(--oc-field)}
+html .oc-redesign.member-shell .topup-review{border-color:var(--oc-line);border-radius:18px;background:var(--oc-surface)}
+html .oc-redesign.member-shell .topup-review .member-page-action:disabled{background:var(--oc-field);color:var(--oc-secondary);opacity:1}
+html .oc-redesign.member-shell .social-store-card,html .oc-redesign.member-shell .seller-apply-status{background:var(--oc-raised);border:0;border-radius:24px}
+html .oc-redesign.member-shell .social-profile-title-row h2{font-size:1.75rem}
+html .oc-redesign.member-shell .social-edit-button,html .oc-redesign.member-shell .social-view-store{border:0;border-radius:999px;background:var(--oc-field);font-size:.875rem}
+html .oc-redesign.member-shell .social-profile-tabs>button{font-size:1rem}
+html .oc-redesign.member-shell .social-work-grid img{border-radius:22px}
+
+/* First-run, consent and document pages share the reference's field and modal shapes. */
+html .oc-redesign .welcome-main{max-width:620px}
+html .oc-redesign .welcome-goals>label{border:1px solid transparent;border-radius:18px;background:var(--oc-raised)}
+html .oc-redesign .welcome-goals>label.is-selected{border-color:var(--oc-accent);background:var(--oc-raised)}
+html .oc-redesign .welcome-interests>label{border:1px solid transparent;border-radius:16px;background:var(--oc-raised);font-size:1rem}
+html .oc-redesign .welcome-interests>label.is-selected{border-color:var(--oc-accent);background:var(--oc-field)}
+html .oc-redesign .welcome-name input{border:1px solid transparent;border-radius:16px;background:var(--oc-field);min-height:52px}
+html .oc-redesign .welcome-intro{font-size:1rem}
+html .oc-redesign .welcome-note{font-size:.8125rem}
+html .oc-redesign .legal-nav a{font-size:.875rem;border-radius:12px}
+html .oc-redesign .legal-nav a[aria-current=page]{background:var(--oc-field)}
+html .oc-redesign .legal-toc{border:0;border-radius:24px;background:var(--oc-raised)}
+html .oc-redesign .legal-toc a{font-size:.875rem}
+html .oc-redesign .legal-intro,html .oc-redesign .legal-article section p{font-size:1rem}
+html .oc-redesign .legal-field{font-size:.875rem}
+html .oc-redesign .legal-field :is(input,textarea,select){border:1px solid transparent;border-radius:16px;background:var(--oc-field);font-size:1rem;min-height:52px}
+html .oc-redesign .legal-field :is(input,textarea,select):focus{border-color:var(--oc-accent);box-shadow:none}
+html .oc-redesign .legal-callout{border:0;border-radius:18px;background:var(--oc-raised);font-size:.875rem!important}
+html .oc-redesign.legal-gate>main{border:0;border-radius:28px;background:var(--oc-raised);padding:32px}
+html .oc-redesign.legal-gate main>p,html .oc-redesign.legal-gate form>p{font-size:1rem}
+html .main-dialog{border:1px solid var(--oc-line);border-radius:28px;background:var(--oc-raised);box-shadow:0 24px 70px #0007}
+html .main-dialog .dialog-header{padding:24px 28px;border:0}
+html .main-dialog .dialog-header h2{font-size:1.375rem}
+html .main-dialog .detail-visual{border-radius:24px}
+html .main-dialog .detail-specs{border:0;border-radius:18px;background:var(--oc-field)}
+html .main-dialog .detail-content>p{font-size:1rem}
+html .main-dialog .button-blue{background:var(--oc-accent);color:var(--oc-accent-ink);border-radius:999px;font-size:1rem}
+html .main-dialog .button-blue>svg{display:none}
+html .main-dialog .search-modal-form{background:var(--oc-field);border:0;border-radius:20px}
+html .main-dialog .modal-chips button{background:var(--oc-field);border:0;border-radius:999px;font-size:.875rem}
+html .drawer{background:var(--oc-raised);border-radius:28px 0 0 28px}
+html .oc-redesign :is(.social-settings,.member-store-form,.legal-field) select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%239b9ba1' stroke-width='1.7'%3E%3Cpath d='m4 6 4 4 4-4'/%3E%3C/svg%3E");background-position:right 17px center;background-repeat:no-repeat;padding-right:42px}
+@media(max-width:1100px){
+  html .oc-redesign .oc-product-card.reference-product{padding:20px;min-height:400px}
+  .reference-product-heading h3{font-size:1.25rem}.reference-product-footer>span{font-size:.9375rem}
+  .reference-product-action{padding:9px 12px}
+}
+@media(max-width:900px){
+  html .oc-redesign .oc-topic-rail{grid-template-columns:repeat(4,240px)}
+  html .oc-redesign .reference-catalog-shelf{padding:18px}
+}
+@media(max-width:700px){
+  html .oc-redesign .oc-discovery .member-product-grid{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:min(340px,94%);gap:14px;overflow-x:auto;scroll-snap-type:x proximity;padding-bottom:12px;scrollbar-width:thin}
+  html .oc-redesign .oc-product-card.reference-product{scroll-snap-align:start;min-height:405px;padding:22px}
+  html .oc-redesign .reference-catalog-shelf{padding:18px;border-radius:26px}
+  .reference-product-heading h3{font-size:1.375rem}.reference-product-action{font-size:.875rem}
+  .reference-auth-intro{margin-bottom:30px}.reference-auth-intro>h2{font-size:2.25rem}
+  html .oc-redesign .auth-main{padding:22px 25px 45px}
+  html .oc-redesign .oc-search-submit{min-height:35px;font-size:.875rem}
+  html .oc-redesign .member-category-list button{font-size:.875rem}
+  html .oc-redesign .market-results-heading h2{font-size:1.5rem}
+  html .oc-redesign .market-results-heading p{font-size:.9375rem}
+  html .oc-redesign .member-sort select{max-width:140px;font-size:.875rem}
+  html .oc-redesign .oc-topics-heading h2{font-size:1.125rem}
+  html .oc-redesign.member-shell .member-page-header h1{font-size:1.75rem}
+  html .oc-redesign.member-shell .member-account-identity,html .oc-redesign.member-shell .social-settings,html .oc-redesign.member-shell .member-2fa,html .oc-redesign.member-shell .topup-form{padding:20px}
+  html .oc-redesign.member-shell .member-account-line{padding:18px 20px}
+  html .oc-redesign.member-shell .social-security-step{padding:20px}
+  html .oc-redesign .oc-button-dark,html .oc-redesign .member-page-action{font-size:.9375rem;padding:10px 18px}
+  html .oc-redesign.legal-gate>main{padding:24px}
+}
+@media(prefers-reduced-motion:reduce){.reference-product-action,.reference-product-save{transition:none}}
+/* Keep the sign-in column open, as in the supplied composition. */
+html .oc-redesign.auth-shell .auth-card{background:transparent;border:0;box-shadow:none}
+html .main-dialog .icon-button{display:grid;place-items:center;width:36px;height:36px;border:0;border-radius:50%;background:var(--oc-field);color:var(--oc-secondary)}
+html .main-dialog .icon-button .icon{display:block;width:18px;height:18px;stroke:currentColor;fill:none}
+html .main-dialog .detail-note{font-size:.8125rem;line-height:1.8}

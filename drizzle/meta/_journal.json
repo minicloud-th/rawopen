@@ -1,0 +1,27 @@
+{
+  "version": "7",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "6",
+      "when": 1794639837802,
+      "tag": "0000_loving_peter_quill",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1794675525550,
+      "tag": "0001_cute_raider",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1794704574166,
+      "tag": "0002_minor_celestials",
+      "breakpoints": true
+    }
+  ]
+}

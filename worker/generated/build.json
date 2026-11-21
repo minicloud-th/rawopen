@@ -1,0 +1,10 @@
+{
+  "sourceSha256": "d6182877b2362913ac5e0c314186e207c1a97526d409e666cd5b5bab3c78bd2d",
+  "goVersion": "go version go1.27.4 linux/amd64",
+  "rustVersion": "rustc 1.100.0 (0ef1bc386 2026-11-09)",
+  "artifacts": {
+    "api.wasm": "1e13c5263238ebe6890cf1575ede47d7a0158b174cef295fcc710b1c2211bfd1",
+    "money.wasm": "4bccceb48a64d309d42f2b83cd6db4b161984d65b9cc5429fc606459b8cb7077",
+    "go-runtime.js": "34cddf45632cb2e2f2eac89f3abb6b49115b8261ae3fbd83eb634166f2825789"
+  }
+}

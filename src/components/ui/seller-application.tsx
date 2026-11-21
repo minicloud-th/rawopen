@@ -1,0 +1,25 @@
+import {useEffect,useState,type FormEvent} from 'react';
+import type {User} from 'firebase/auth';
+import {legalRequest,SELLER_TERMS_VERSION,type AgreementResponse} from '@/lib/legal';
+import '@/legal.css';
+type Application={storeName:string;description:string;kind:string;status:string;submittedAt:string};
+type Result={application:Application|null;approved:boolean};
+export default function SellerApplication({user}:{user?:User|null}){
+  const [data,setData]=useState<Result|null>(null),[age,setAge]=useState<number|null>(null),[loading,setLoading]=useState(true),[error,setError]=useState(''),[attempt,setAttempt]=useState(0),[busy,setBusy]=useState(false);
+  const [name,setName]=useState(''),[kind,setKind]=useState('goods'),[description,setDescription]=useState(''),[accepted,setAccepted]=useState(false),[rights,setRights]=useState(false),[rules,setRules]=useState(false);
+  useEffect(()=>{if(!user){setLoading(false);return}const controller=new AbortController();setLoading(true);setError('');void Promise.all([legalRequest<Result>(user,'/api/seller-application','GET',undefined,controller.signal),legalRequest<AgreementResponse>(user,'/api/agreements','GET',undefined,controller.signal)]).then(([result,agreement])=>{setData(result);setAge(agreement.access.age)}).catch(error=>{if(!controller.signal.aborted)setError(error.message)}).finally(()=>{if(!controller.signal.aborted)setLoading(false)});return()=>controller.abort()},[user,attempt]);
+  async function submit(event:FormEvent){event.preventDefault();if(!user||busy)return;setBusy(true);setError('');try{setData(await legalRequest<Result>(user,'/api/seller-application','POST',{storeName:name,kind,description,acceptedSellerTerms:accepted,termsVersion:SELLER_TERMS_VERSION,prohibitedItemsAcknowledged:rights,publisherRulesAcknowledged:rules}));}catch(reason){setError(reason instanceof Error?reason.message:'ส่งคำขอไม่สำเร็จ')}finally{setBusy(false)}}
+  if(loading)return <p role="status">กำลังตรวจสอบสถานะผู้สมัคร…</p>;
+  if(!user)return <p className="seller-apply-rules">เข้าสู่ระบบด้วยบัญชีจริงเพื่อสมัครผู้ขาย <a href="/sell">อ่านขั้นตอนสมัครผู้ขาย</a></p>;
+  if(data?.approved)return <div className="seller-apply-status"><h2>ผ่านการอนุมัติผู้ขายแล้ว</h2><p>พื้นที่ร้านและโปรไฟล์ร้านเปิดให้ใช้งานในบัญชีของคุณแล้ว</p><a href="/dashboard/store">ไปที่ร้านค้าของฉัน</a></div>;
+  if(data?.application)return <div className="seller-apply-status"><h2>ส่งคำขอแล้ว · รอตรวจ</h2><p>{data.application.storeName}</p><p>ยังไม่เปิดร้านหรือแสดงผลงานร้าน ต้องตรวจตัวตน สิทธิขาย และความพร้อมรับเงินก่อนอนุมัติ ขณะนี้ช่องทางตรวจเอกสารและรับเงินยังไม่เปิด</p><p>อย่าส่งเอกสารตัวตนหรือข้อมูลธนาคารผ่านข้อความทั่วไป</p><a href="/contact">ติดต่อเกี่ยวกับคำขอ</a></div>;
+  if(error&&!data)return <div role="alert"><p className="legal-error">{error}</p><button onClick={()=>setAttempt(v=>v+1)}>ลองโหลดอีกครั้ง</button></div>;
+  return <><p className="seller-apply-rules">การสมัครผู้ขายแยกจากบัญชีสมาชิก คำขอจะรอตรวจและยังไม่เปิดร้าน อ่าน <a href="/seller-terms" target="_blank" rel="noopener">ข้อกำหนดผู้ขาย</a> และ <a href="/legal/guardians" target="_blank" rel="noopener">เงื่อนไขผู้เยาว์</a> ก่อนส่ง</p>
+    <form className="seller-apply-form" onSubmit={submit}><label className="legal-field">ชื่อร้านที่ต้องการ<input minLength={2} maxLength={60} value={name} onChange={event=>setName(event.target.value)} required/></label><label className="legal-field">ประเภทที่สมัคร<select value={kind} onChange={event=>setKind(event.target.value)}><option value="goods">สินค้า / สินค้าดิจิทัลที่มีสิทธิขาย</option><option value="service">บริการสร้างสรรค์ / นักพัฒนา</option><option value="game_service" disabled={age===null||age<15}>บริการเกมรับฟาร์ม/รับหา · อายุขั้นต่ำ 15 ปี</option></select></label><label className="legal-field">สิ่งที่จะขายและสิทธิที่มี<textarea rows={4} minLength={10} maxLength={500} value={description} onChange={event=>setDescription(event.target.value)} required/></label>
+      <label className="legal-check"><input type="checkbox" checked={accepted} onChange={event=>setAccepted(event.target.checked)} required/><span>ฉันอ่านและยอมรับ <a href="/seller-terms" target="_blank" rel="noopener">ข้อกำหนดผู้ขาย</a> รุ่น {SELLER_TERMS_VERSION}</span></label>
+      <label className="legal-check"><input type="checkbox" checked={rights} onChange={event=>setRights(event.target.checked)} required/><span>ฉันจะไม่ขายบัญชีขโมย สินค้าละเมิดสิทธิ แฮ็ก หรือใช้บอทเจาะ/หลบระบบป้องกัน</span></label>
+      <label className="legal-check"><input type="checkbox" checked={rules} onChange={event=>setRules(event.target.checked)} required/><span>ฉันจะเสนอเฉพาะรายการที่มีสิทธิขายหรือให้บริการ และตรวจข้ออนุญาตของเจ้าของแพลตฟอร์มหรือค่ายเกมก่อน</span></label>
+      {!user.emailVerified&&<p className="legal-error">ต้องยืนยันอีเมลก่อนส่งคำขอ ไปที่หน้าความปลอดภัยเพื่อส่งอีเมลยืนยัน</p>}
+      {error&&<p className="legal-error" role="alert">{error}</p>}<button className="member-page-action" disabled={busy||!user.emailVerified||!accepted||!rights||!rules}>{busy?'กำลังส่ง…':'ส่งคำขอสมัครผู้ขาย'}</button>
+    </form></>;
+}

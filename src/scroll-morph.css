@@ -1,0 +1,35 @@
+/* One quiet gallery: photographs gather around the promise, then open into an arc. */
+.presentation-track{height:360svh}
+.presentation-track .hero-canvas{z-index:5;pointer-events:none;max-width:none}
+.presentation-track .hero-copy{position:absolute;top:50%;left:0;right:0;padding:0;width:min(620px,calc(100% - 70px));transform:translate3d(0,-50%,0);pointer-events:none}
+.presentation-track .hero-copy h1{margin:0;line-height:1.35;font-size:clamp(48px,4.6vw,68px);letter-spacing:-2.7px}
+.presentation-track .hero-copy>p{margin-top:22px}
+.has-presentation:not(.gallery-ready) .hero-copy{opacity:0}
+.has-presentation:not(.gallery-ready) .hero-glyph{animation:none;opacity:0}
+.presentation-track .hero-search{pointer-events:auto;margin-top:25px;max-width:510px}
+.scroll-morph-gallery{position:absolute;inset:0;z-index:4;perspective:1100px;pointer-events:auto}
+.scroll-morph-card{position:absolute;left:50%;top:50%;width:62px;height:86px;margin-left:-31px;margin-top:-43px;padding:0;border:0;border-radius:8px;background:transparent;cursor:pointer;transform-style:preserve-3d;will-change:transform,opacity;box-shadow:none}
+.morph-flip{display:block;position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .55s cubic-bezier(.22,1,.36,1)}
+.morph-card-front,.morph-card-back{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;border-radius:8px;overflow:hidden;backface-visibility:hidden;-webkit-backface-visibility:hidden;box-shadow:0 3px 12px #2034580c;background:#eff3f8}
+.morph-card-front img{display:block;width:100%;height:100%;object-fit:cover;user-select:none}
+.morph-card-back{transform:rotateY(180deg);background:#2457ff;color:white}
+.scroll-morph-card:hover .morph-flip,.scroll-morph-card:focus-visible .morph-flip{transform:rotateY(180deg)}
+.scroll-morph-card:focus-visible{outline:3px solid #2457ff;outline-offset:5px}
+.scroll-morph-gallery[inert]{pointer-events:none}
+.motion-paused .morph-flip{transition:none}
+.reduce-motion .scroll-morph-card:hover .morph-flip,.reduce-motion .scroll-morph-card:focus-visible .morph-flip{transform:none}
+@media(min-width:1600px){.scroll-morph-card{width:70px;height:96px;margin-left:-35px;margin-top:-48px}.presentation-track .hero-copy h1{font-size:70px}}
+@media(max-width:1000px){.presentation-track .hero-copy{width:530px}.presentation-track .hero-copy h1{font-size:54px}.scroll-morph-card{width:56px;height:78px;margin-left:-28px;margin-top:-39px}}
+@media(max-width:760px){
+ .presentation-track{height:320svh}
+ .presentation-track .hero-copy{width:calc(100% - 52px);padding:0;top:50%}
+ .presentation-track .hero-copy h1{font-size:clamp(32px,9vw,52px);letter-spacing:-1.6px;line-height:1.4;white-space:nowrap}
+ .presentation-track .hero-copy>p{margin-top:17px;font-size:12px}
+ .presentation-track .hero-search{height:56px;margin-top:22px;padding-left:13px}
+ .presentation-track .hero-search input{font-size:12px;padding-left:9px}
+ .presentation-track .hero-search button{height:42px;min-width:78px;padding:0 14px;font-size:12px}
+ .scroll-morph-card{width:44px;height:62px;margin-left:-22px;margin-top:-31px;border-radius:6px}
+ .morph-card-front,.morph-card-back{border-radius:6px}
+ .morph-card-back svg{width:20px;height:20px}
+}
+@media(prefers-reduced-motion:reduce){.morph-flip{transition:none}.scroll-morph-card:hover .morph-flip,.scroll-morph-card:focus-visible .morph-flip{transform:none}}

@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#2457ff">
+  <meta name="description" content="พบผลงานและแนวคิดสร้างสรรค์จาก OpenCraft พื้นที่รวมสินค้า งานดิจิทัล และบริการ">
+  <meta property="og:title" content="OpenCraft — ทุกสิ่งที่มองหา มาเจอกันที่นี่">
+  <meta property="og:description" content="ตลาดซื้อขายสินค้าและบริการ ครบจบในที่เดียว">
+  <title>OpenCraft — ตลาดซื้อขาย ครบจบในที่เดียว</title>
+  <link rel="icon" href="assets/opencraft-symbol.png">
+  <link rel="preload" href="assets/opencraft-wordmark.png" as="image">
+  <link rel="stylesheet" href="/assets/fonts.css">
+  <script>if(['/signup','/login','/account','/reset-password','/dashboard','/welcome'].includes(location.pathname))document.documentElement.classList.add('auth-route');</script>
+
+  <script type="module" src="/src/main.tsx"></script>
+</head>
+<body>
+  <a class="skip-link" href="#discover">ข้ามไปค้นหาสินค้า</a>
+  <main id="portfolio-root"></main>
+  <div id="auth-root"></div>
+
+  <dialog id="main-dialog" class="main-dialog"><div id="dialog-content"></div></dialog>
+  <dialog id="cart-dialog" class="drawer"><div class="drawer-header"><div><span class="section-kicker">เก็บสิ่งที่ชอบไว้ด้วยกัน</span><h2>ตะกร้าของคุณ <span id="drawer-count">0</span></h2></div><button class="icon-button" data-action="close-cart" aria-label="ปิดตะกร้า"><i data-icon="x"></i></button></div><div id="cart-items" class="cart-items"></div><div id="cart-footer" class="cart-footer"></div></dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+html[data-theme="dark"]{color-scheme:dark;background:#15171b;color:#eceef2}
+html[data-theme="dark"] body{background:#15171b;color:#eceef2}
+html[data-theme="dark"] .member-shell{background:#1d2025}
+html[data-theme="dark"] .member-rail{background:#1b1d21;border-color:#292c32}
+html[data-theme="dark"] .member-panel{background:#191b20;color:#eceef2;box-shadow:0 0 0 1px #292c32}
+html[data-theme="dark"] .member-heading h1,html[data-theme="dark"] .member-page-header h1{color:#e9ebef}
+html[data-theme="dark"] .member-welcome,html[data-theme="dark"] .member-page-lead,html[data-theme="dark"] .member-page-note{color:#9da3ad}
+html[data-theme="dark"] .member-card{background:#22252a;border-color:#2c3037;color:#e6e8ec;box-shadow:0 5px 18px #0004}
+html[data-theme="dark"] .member-card:hover{color:#fff}html[data-theme="dark"] .member-card.is-current{box-shadow:0 8px 24px #0006}
+html[data-theme="dark"] .member-card-tag{background:#343840;color:#c8cbd1}html[data-theme="dark"] .member-card.is-current .member-card-tag{background:#555b65;color:#fff}
+html[data-theme="dark"] .member-card-caption>span,html[data-theme="dark"] .member-example{color:#9299a4}
+html[data-theme="dark"] .member-browse,html[data-theme="dark"] .member-category-list button[aria-pressed=true]{background:#e4e7ed;color:#22252a}
+html[data-theme="dark"] .member-catalog{border-color:#2a2d33}html[data-theme="dark"] .member-catalog-heading h2{color:#e6e8ed}
+html[data-theme="dark"] .member-sort select,html[data-theme="dark"] .member-search,html[data-theme="dark"] .member-category-list button,html[data-theme="dark"] .member-account-preferences>div>span{background:#22252a;color:#a7adb7;border-color:#343840}
+html[data-theme="dark"] .member-search input{color:#e6e8ed}html[data-theme="dark"] .member-search input::placeholder{color:#818894}
+html[data-theme="dark"] .member-product-visual{background:#22252a}html[data-theme="dark"] .member-product-caption>div>button{color:#e1e3e8}
+html[data-theme="dark"] .member-route-page{color:#e6e8ed}html[data-theme="dark"] .member-page-header h1,html[data-theme="dark"] .member-page-empty h2{color:#e6e8ed}
+html[data-theme="dark"] .member-page-action{background:#e4e7ed;color:#24272c}html[data-theme="dark"] .member-page-action:hover{background:#fff;color:#15171b}
+html[data-theme="dark"] .member-page-empty p,html[data-theme="dark"] .member-page-note,html[data-theme="dark"] .member-faq details>p{color:#969da7}
+html[data-theme="dark"] .member-cart-line,html[data-theme="dark"] .member-cart-summary,html[data-theme="dark"] .member-account-line,html[data-theme="dark"] .member-faq details{border-color:#30343b}
+html[data-theme="dark"] .member-cart-title,html[data-theme="dark"] .member-cart-summary h2,html[data-theme="dark"] .member-cart-summary strong,html[data-theme="dark"] .member-faq summary,html[data-theme="dark"] .member-account-line h2,html[data-theme="dark"] .member-security-note h2{color:#e0e3e8}
+html[data-theme="dark"] .member-cart-summary>p,html[data-theme="dark"] .member-cart-summary>div,html[data-theme="dark"] .member-cart-description>p,html[data-theme="dark"] .member-account-identity p{color:#959ba5}
+html[data-theme="dark"] .member-store-form :is(input,select,textarea),html[data-theme="dark"] .social-settings :is(input,textarea),html[data-theme="dark"] .social-work-editor :is(input,textarea),html[data-theme="dark"] .member-2fa input{background:#202329;border-color:#373b43;color:#e3e6eb}
+html[data-theme="dark"] .member-store-form label,html[data-theme="dark"] .social-settings>label,html[data-theme="dark"] .social-work-editor label,html[data-theme="dark"] .member-2fa label{color:#b5bbc4}
+html[data-theme="dark"] .member-store-profile-link,html[data-theme="dark"] .social-work-grid article,html[data-theme="dark"] .social-store-card{background:#202329;border-color:#343840}
+html[data-theme="dark"] .member-store-profile-link strong,html[data-theme="dark"] .social-store-heading h3,html[data-theme="dark"] .social-work-grid h3,html[data-theme="dark"] .social-profile-title-row h2{color:#e4e6eb}
+html[data-theme="dark"] .member-store-profile-link p,html[data-theme="dark"] .social-work-grid p,html[data-theme="dark"] .social-store-card>p,html[data-theme="dark"] .social-profile-summary>p{color:#a1a7b1}
+html[data-theme="dark"] .social-profile{color:#e4e6eb}html[data-theme="dark"] .social-profile-tabs,html[data-theme="dark"] .social-profile-tabs button[aria-selected=true]:after,html[data-theme="dark"] .social-settings-section,html[data-theme="dark"] .social-security-step{border-color:#343840}
+html[data-theme="dark"] .social-profile-tabs button[aria-selected=true]{color:#eceef2}html[data-theme="dark"] .social-profile-empty h3{color:#e2e5ea}
+html[data-theme="dark"] .social-edit-button,html[data-theme="dark"] .social-view-store,html[data-theme="dark"] .social-settings-section>button,html[data-theme="dark"] .social-cancel{background:#22252b;border-color:#383c44;color:#c2c7cf}
+html[data-theme="dark"] .social-security-reminder{background:#29261d;border-color:#51462b;color:#ddc985}
+html[data-theme="dark"] .social-store-icon{background:#2a2d33;color:#b3bac5}html[data-theme="dark"] .avatar-border-indicator{border-color:#191b20}
+html[data-theme="dark"] .member-profile-menu,html[data-theme="dark"] .member-account-popover .ui-pm__card{background:#22252a;border-color:#343840}
+html[data-theme="dark"] .theme-switch{background:#22252a;border-color:#343840}html[data-theme="dark"] .theme-switch button[aria-pressed=true]{background:#353941;color:#f2f3f6}
+html[data-theme="dark"] .member-hub-footer{border-color:#30343b}
+html[data-theme="dark"] .auth-shell{background:#15171b;color:#eceef2}html[data-theme="dark"] .auth-card{background:#1d2025;border-color:#30343b}html[data-theme="dark"] .auth-heading h1,html[data-theme="dark"] .auth-account h2{color:#eceef2}
+html[data-theme="dark"] .has-glass-hero .landing-header{background:rgba(19,21,26,.7);border-color:rgba(255,255,255,.08)}
+html[data-theme="dark"] .has-glass-hero .landing-header .nav-wrap{background:transparent;border-color:transparent}
+html[data-theme="dark"] .glass-market-hero{background:radial-gradient(ellipse at 50% 0%,#123244 0%,#171b22 49%,#15171b 100%);color:#f0f5fa}
+html[data-theme="dark"] .glass-market-hero :is(h1,h2,p){color:inherit}
+html[data-theme="dark"] .glass-market-hero .glass-panel{background:rgba(29,35,43,.66);border-color:rgba(255,255,255,.14)}
+html[data-theme="dark"] .glass-market-hero :is(input,button){color:inherit}
+@media(prefers-reduced-motion:reduce){html[data-theme="dark"] *{scroll-behavior:auto!important}}

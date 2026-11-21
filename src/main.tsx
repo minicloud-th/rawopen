@@ -1,0 +1,20 @@
+import { createRoot } from 'react-dom/client';
+import { CommerceHero } from '@/components/ui/commerce-hero';
+import { AuthRouter } from '@/components/ui/auth-router';
+import './lib/theme';
+import './appearance.css';
+import './theme.css';
+import './store.css';
+import './smooth-motion.css';
+import './auth.css';
+import './member-home.css';
+import './portfolio.css';
+import './landing.css';
+import './glass-hero.css';
+import './onboarding.css';
+import './commerce.js';
+import './market-refinement.css';
+import './reference-skin.css';
+
+createRoot(document.getElementById('portfolio-root')!).render(<CommerceHero/>);
+createRoot(document.getElementById('auth-root')!).render(<AuthRouter/>);

@@ -1,0 +1,29 @@
+/* Short, direct responses to navigation. Native page scrolling stays intact. */
+html{scrollbar-gutter:stable}
+.site-header.clean-header .mobile-menu{transform-origin:calc(100% - 22px) 0;opacity:1;transform:none;transition:opacity .18s ease,transform .26s cubic-bezier(.16,1,.3,1),display .26s allow-discrete}
+.site-header.clean-header .mobile-menu[hidden]{opacity:0;transform:translateY(-7px) scale(.98);pointer-events:none}
+@starting-style{.site-header.clean-header .mobile-menu:not([hidden]){opacity:0;transform:translateY(-7px) scale(.98)}}
+.clean-header .mobile-menu-button .icon{transition:transform .26s cubic-bezier(.22,1,.36,1)}
+.clean-header .mobile-menu-button[aria-expanded=true] .icon{transform:rotate(90deg)}
+
+.main-dialog,.drawer{opacity:0;transition:opacity .2s ease,transform .32s cubic-bezier(.22,1,.36,1),display .32s allow-discrete,overlay .32s allow-discrete}
+.main-dialog{transform:translateY(18px) scale(.985)}
+.drawer{transform:translateX(100%)}
+.main-dialog[open],.drawer[open]{opacity:1;transform:none;animation:none}
+.main-dialog:not([open]),.drawer:not([open]){pointer-events:none}
+.main-dialog::backdrop,.drawer::backdrop{background:#111c3b00;backdrop-filter:none;transition:background-color .24s ease,display .32s allow-discrete,overlay .32s allow-discrete}
+.main-dialog[open]::backdrop,.drawer[open]::backdrop{background:#111c3b60}
+@starting-style{
+  .main-dialog[open]{opacity:0;transform:translateY(18px) scale(.985)}
+  .drawer[open]{opacity:0;transform:translateX(100%)}
+  .main-dialog[open]::backdrop,.drawer[open]::backdrop{background:#111c3b00}
+}
+.button,.quick-add,.clean-header .nav-actions .icon-button{transition:transform .2s cubic-bezier(.22,1,.36,1),background .2s,color .2s,box-shadow .2s}
+.button:active,.quick-add:active,.clean-header .nav-actions .icon-button:active{transform:scale(.96)}
+.product-open>img{transition:transform .55s cubic-bezier(.22,1,.36,1)}
+
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .site-header.clean-header .mobile-menu,.main-dialog,.drawer,.main-dialog::backdrop,.drawer::backdrop,.button,.quick-add,.clean-header .nav-actions .icon-button,.clean-header .mobile-menu-button .icon,.product-open>img{transition:none!important;animation:none!important}
+  .button:active,.quick-add:active,.clean-header .nav-actions .icon-button:active{transform:none}
+}
